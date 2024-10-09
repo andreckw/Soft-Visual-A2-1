@@ -1,0 +1,16 @@
+@baseUrl = http://localhost:5088
+
+### Index
+GET {{baseUrl}}
+Content-Type: application/json
+
+
+### Cadastro usuario
+POST {{baseUrl}}/cadastrar
+    Content-Type: application/json
+
+{
+    "nome": "teste",
+    "senha": "teste",
+    "email": "teste@gmail.com"
+}
