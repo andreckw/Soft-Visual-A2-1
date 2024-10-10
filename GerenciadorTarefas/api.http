@@ -14,3 +14,12 @@ POST {{baseUrl}}/cadastrar
     "senha": "teste",
     "email": "teste@gmail.com"
 }
+
+### Logar usuario
+POST {{baseUrl}}/login 
+    Content-Type: application/json
+
+{
+    "email": "teste@gmail.com",
+    "senha": "teste"
+}
