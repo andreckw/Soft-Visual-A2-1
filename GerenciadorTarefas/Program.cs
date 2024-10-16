@@ -1,12 +1,20 @@
 using GerenciadorTarefas.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite("Data Source=gerenciadortarefas.db"));
+
+builder.Services.AddControllers();
 var app = builder.Build();
 
-app.MapGet("/", () => "Gerenciador de tarefas");
+app.UseStaticFiles();
+
+app.MapGet("/", () => Results.Redirect("/index.html"));
+
+app.MapControllers();
 
 app.MapPost("/cadastrar", ([FromBody] Usuario user, 
     [FromServices] AppDbContext context) => {
@@ -38,5 +46,9 @@ app.MapPost("/login", ([FromBody] Usuario user,
 
         return Results.Ok(userLogin);
 });
+
+app.UseStaticFiles();
+app.UseRouting();
+app.UseEndpoints(endpoints => endpoints.MapControllers());
 
 app.Run();

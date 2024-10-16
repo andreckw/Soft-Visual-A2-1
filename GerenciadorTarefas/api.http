@@ -23,3 +23,27 @@ POST {{baseUrl}}/login
     "email": "teste@gmail.com",
     "senha": "teste"
 }
+
+### Teste
+POST {{baseUrl}}/api/boards
+Content-Type: application/json
+
+{
+  "name": "teste"
+}
+
+### Teste
+GET {{baseUrl}}/api/boards
+
+
+### Criar uma nova lista
+POST {{baseUrl}}/api/lists
+Content-Type: application/json
+
+{
+    "title": "teste",
+    "boardId": 1
+}
+
+### Listar listas de um board
+GET {{baseUrl}}/api/lists/1

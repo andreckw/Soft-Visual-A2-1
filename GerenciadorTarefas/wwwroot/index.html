@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Tarefas</title>
+    <script src="Script.js" defer></script>
+</head>
+<body>
+    <h1>Gerenciador de Tarefas</h1>
+    <button onclick="createBoard()">Criar Novo Board</button>
+    <div id="boards"></div>
+    
+    <div id="lists-container" style="display: none;">
+        <h2>Listas</h2>
+        <input type="text" id="list-title" placeholder="Título da Lista">
+        <button onclick="createList()">Adicionar Lista</button>
+        <div id="lists"></div>
+    </div>
+
+    <div id="cards-container" style="display: none;">
+        <h2>Cartões</h2>
+        <input type="text" id="card-title" placeholder="Título do Cartão">
+        <input type="text" id="card-description" placeholder="Descrição do Cartão">
+        <button onclick="createCard()">Adicionar Cartão</button>
+        <div id="cards"></div>
+    </div>
+</body>
+</html>

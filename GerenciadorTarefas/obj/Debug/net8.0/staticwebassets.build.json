@@ -1,11 +1,77 @@
 {
   "Version": 1,
-  "Hash": "SQFIHAYPseEQsLu5DgvlWAnrEsC5bW7eOdwLflsaqp0=",
+  "Hash": "crAVWOIkAvFCFL5icRKfMdtovpitvKe4CBCK2HTL8X8=",
   "Source": "GerenciadorTarefas",
   "BasePath": "_content/GerenciadorTarefas",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "GerenciadorTarefas\\wwwroot",
+      "Source": "GerenciadorTarefas",
+      "ContentRoot": "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\wwwroot\\",
+      "BasePath": "_content/GerenciadorTarefas",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\wwwroot\\index.html",
+      "SourceId": "GerenciadorTarefas",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\wwwroot\\",
+      "BasePath": "_content/GerenciadorTarefas",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\wwwroot\\Script.js",
+      "SourceId": "GerenciadorTarefas",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\wwwroot\\",
+      "BasePath": "_content/GerenciadorTarefas",
+      "RelativePath": "Script.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Script.js"
+    },
+    {
+      "Identity": "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\wwwroot\\styles.css",
+      "SourceId": "GerenciadorTarefas",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\wwwroot\\",
+      "BasePath": "_content/GerenciadorTarefas",
+      "RelativePath": "styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\styles.css"
+    }
+  ]
 }
