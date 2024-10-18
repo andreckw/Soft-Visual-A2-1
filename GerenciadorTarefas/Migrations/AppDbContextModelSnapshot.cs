@@ -17,41 +17,43 @@ namespace GerenciadorTarefas.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
 
-            modelBuilder.Entity("Board", b =>
+            modelBuilder.Entity("GerenciadorTarefas.Models.Board", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Boards");
                 });
 
-            modelBuilder.Entity("Card", b =>
+            modelBuilder.Entity("GerenciadorTarefas.Models.Card", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ListId")
+                    b.Property<int>("BoardId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ListId");
+                    b.HasIndex("BoardId");
 
                     b.ToTable("Cards");
                 });
@@ -82,41 +84,21 @@ namespace GerenciadorTarefas.Migrations
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("List", b =>
+            modelBuilder.Entity("GerenciadorTarefas.Models.Board", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BoardId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BoardId");
-
-                    b.ToTable("Lists");
-                });
-
-            modelBuilder.Entity("Card", b =>
-                {
-                    b.HasOne("List", "List")
-                        .WithMany("Cards")
-                        .HasForeignKey("ListId")
+                    b.HasOne("GerenciadorTarefas.Models.Usuario", "Usuario")
+                        .WithMany("Boards")
+                        .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("List");
+                    b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("List", b =>
+            modelBuilder.Entity("GerenciadorTarefas.Models.Card", b =>
                 {
-                    b.HasOne("Board", "Board")
-                        .WithMany("Lists")
+                    b.HasOne("GerenciadorTarefas.Models.Board", "Board")
+                        .WithMany("Cards")
                         .HasForeignKey("BoardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -124,14 +106,14 @@ namespace GerenciadorTarefas.Migrations
                     b.Navigation("Board");
                 });
 
-            modelBuilder.Entity("Board", b =>
-                {
-                    b.Navigation("Lists");
-                });
-
-            modelBuilder.Entity("List", b =>
+            modelBuilder.Entity("GerenciadorTarefas.Models.Board", b =>
                 {
                     b.Navigation("Cards");
+                });
+
+            modelBuilder.Entity("GerenciadorTarefas.Models.Usuario", b =>
+                {
+                    b.Navigation("Boards");
                 });
 #pragma warning restore 612, 618
         }

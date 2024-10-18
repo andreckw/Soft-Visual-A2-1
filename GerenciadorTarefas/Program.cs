@@ -4,17 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=gerenciadortarefas.db"));
-
-builder.Services.AddControllers();
+builder.Services.AddDbContext<AppDbContext>();
 var app = builder.Build();
 
-app.UseStaticFiles();
-
 app.MapGet("/", () => Results.Redirect("/index.html"));
-
-app.MapControllers();
 
 app.MapPost("/cadastrar", ([FromBody] Usuario user, 
     [FromServices] AppDbContext context) => {
@@ -47,8 +40,27 @@ app.MapPost("/login", ([FromBody] Usuario user,
         return Results.Ok(userLogin);
 });
 
-app.UseStaticFiles();
-app.UseRouting();
-app.UseEndpoints(endpoints => endpoints.MapControllers());
+app.MapGet("/api/boards/{user_id}", (int user_id, [FromServices] AppDbContext context) => {
+
+        var boards = context.Boards.Include(board => board.Cards)
+        .Where(b => b.UsuarioId == user_id)
+        .Select(b => new {b.Name, b.Cards})
+        .ToList();
+
+        if (boards.Count == 0) {
+            return Results.NotFound();
+        }
+
+        return Results.Ok(boards);
+
+});
+
+app.MapPost("/api/boards", ([FromBody] Board board,
+    [FromServices] AppDbContext context) => {
+        context.Boards.Add(board);
+        context.SaveChanges();
+
+        return Results.Created("", board);
+});
 
 app.Run();

@@ -7,6 +7,5 @@ public class Usuario
     public string Email  { get; set; } = "";
     public  string Senha  { get; set; } = "";
     public DateTime CriadoEm { get; set; } = DateTime.Now;
-
-    
+    public ICollection<Board> Boards { get; } = new List<Board>();
 }

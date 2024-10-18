@@ -2,7 +2,7 @@
 
 ### Index
 GET {{baseUrl}}
-Content-Type: application/json
+    Content-Type: application/json
 
 
 ### Cadastro usuario
@@ -24,26 +24,14 @@ POST {{baseUrl}}/login
     "senha": "teste"
 }
 
-### Teste
+### Cria um Board
 POST {{baseUrl}}/api/boards
-Content-Type: application/json
+    Content-Type: application/json
 
 {
-  "name": "teste"
+  "name": "teste3",
+  "usuarioId": 1
 }
 
-### Teste
-GET {{baseUrl}}/api/boards
-
-
-### Criar uma nova lista
-POST {{baseUrl}}/api/lists
-Content-Type: application/json
-
-{
-    "title": "teste",
-    "boardId": 1
-}
-
-### Listar listas de um board
-GET {{baseUrl}}/api/lists/1
+### Listar Boards (precisa do id do usuario)
+GET {{baseUrl}}/api/boards/1
