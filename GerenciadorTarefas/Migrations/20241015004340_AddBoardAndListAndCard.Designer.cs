@@ -3,6 +3,7 @@ using System;
 using GerenciadorTarefas.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,50 +11,50 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GerenciadorTarefas.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241015004340_AddBoardAndListAndCard")]
+    partial class AddBoardAndListAndCard
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
 
-            modelBuilder.Entity("GerenciadorTarefas.Models.Board", b =>
+            modelBuilder.Entity("Board", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Boards");
                 });
 
-            modelBuilder.Entity("GerenciadorTarefas.Models.Card", b =>
+            modelBuilder.Entity("Card", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BoardId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("ListId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BoardId");
+                    b.HasIndex("ListId");
 
                     b.ToTable("Cards");
                 });
@@ -84,21 +85,41 @@ namespace GerenciadorTarefas.Migrations
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("GerenciadorTarefas.Models.Board", b =>
+            modelBuilder.Entity("List", b =>
                 {
-                    b.HasOne("GerenciadorTarefas.Models.Usuario", "Usuario")
-                        .WithMany("Boards")
-                        .HasForeignKey("UsuarioId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BoardId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BoardId");
+
+                    b.ToTable("Lists");
+                });
+
+            modelBuilder.Entity("Card", b =>
+                {
+                    b.HasOne("List", "List")
+                        .WithMany("Cards")
+                        .HasForeignKey("ListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Usuario");
+                    b.Navigation("List");
                 });
 
-            modelBuilder.Entity("GerenciadorTarefas.Models.Card", b =>
+            modelBuilder.Entity("List", b =>
                 {
-                    b.HasOne("GerenciadorTarefas.Models.Board", "Board")
-                        .WithMany("Cards")
+                    b.HasOne("Board", "Board")
+                        .WithMany("Lists")
                         .HasForeignKey("BoardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -106,14 +127,14 @@ namespace GerenciadorTarefas.Migrations
                     b.Navigation("Board");
                 });
 
-            modelBuilder.Entity("GerenciadorTarefas.Models.Board", b =>
+            modelBuilder.Entity("Board", b =>
                 {
-                    b.Navigation("Cards");
+                    b.Navigation("Lists");
                 });
 
-            modelBuilder.Entity("GerenciadorTarefas.Models.Usuario", b =>
+            modelBuilder.Entity("List", b =>
                 {
-                    b.Navigation("Boards");
+                    b.Navigation("Cards");
                 });
 #pragma warning restore 612, 618
         }

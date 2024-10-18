@@ -2,7 +2,7 @@
 
 ### Index
 GET {{baseUrl}}
-Content-Type: application/json
+    Content-Type: application/json
 
 
 ### Cadastro usuario
@@ -23,3 +23,15 @@ POST {{baseUrl}}/login
     "email": "teste@gmail.com",
     "senha": "teste"
 }
+
+### Cria um Board
+POST {{baseUrl}}/api/boards
+    Content-Type: application/json
+
+{
+  "name": "teste3",
+  "usuarioId": 1
+}
+
+### Listar Boards (precisa do id do usuario)
+GET {{baseUrl}}/api/boards/1
