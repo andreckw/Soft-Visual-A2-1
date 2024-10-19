@@ -29,9 +29,9 @@ POST {{baseUrl}}/api/boards
     Content-Type: application/json
 
 {
-  "name": "teste3",
+  "name": "teste12312321",
   "usuarioId": 1,
-  "isPublic": false
+  "isPublic": true
 }
 
 ### Listar Boards (precisa do id do usuario)
@@ -54,7 +54,7 @@ DELETE {{baseUrl}}/api/cards/2
 
 
 ### Deletar Board e seus cards
-DELETE {{baseUrl}}/api/boards/1
+DELETE {{baseUrl}}/api/boards/7
     Content-Type: application/json
 
 
@@ -79,3 +79,6 @@ PUT {{baseUrl}}/api/cards/2
 
 ### Consultar card/tarefa
 GET {{baseUrl}}/api/boards/cards/1
+
+### Visualizar boards publicos
+GET {{baseUrl}}/api/boards/publicos

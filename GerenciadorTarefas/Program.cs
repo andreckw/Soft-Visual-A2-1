@@ -148,4 +148,24 @@ app.MapGet("/api/boards/cards/{id}",(int id, [FromServices] AppDbContext context
 }
 );
 
+app.MapGet("/api/boards/publicos",([FromServices]AppDbContext context)=>
+{
+    var boardsPublicos = context.Boards
+    .Where(b => b.IsPublic)
+    .Include(b => b.Cards)
+    .Select(b => new {
+        b.Id,
+        b.Name,
+        Cards = b.Cards.Select(c => new { c.Id, c.Title, c.Description, c.Situacao})
+    }).ToList();
+
+    if(boardsPublicos.Count() == 0)
+    {
+        return Results.NotFound("");
+    }
+
+    return Results.Ok(boardsPublicos);
+}
+);
+
 app.Run();
