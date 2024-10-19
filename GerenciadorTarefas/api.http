@@ -10,9 +10,9 @@ POST {{baseUrl}}/cadastrar
     Content-Type: application/json
 
 {
-    "nome": "teste",
-    "senha": "teste",
-    "email": "teste123414@gmail.com"
+    "nome": "andre",
+    "senha": "andre",
+    "email": "andre@gmail.com"
 }
 
 ### Logar usuario
@@ -20,8 +20,8 @@ POST {{baseUrl}}/login
     Content-Type: application/json
 
 {
-    "email": "teste123414@gmail.com",
-    "senha": "teste"
+    "email": "andre@gmail.com",
+    "senha": "andre"
 }
 
 ### Cria um Board
@@ -29,9 +29,9 @@ POST {{baseUrl}}/api/boards
     Content-Type: application/json
 
 {
-  "name": "teste12312321",
-  "usuarioId": 1,
-  "isPublic": true
+  "name": "Board1",
+  "usuarioId": 3,
+  "isPublic": false
 }
 
 ### Listar Boards (precisa do id do usuario)
@@ -42,9 +42,9 @@ POST {{baseUrl}}/api/cards
     Content-Type: application/json
 
 {
-    "title": "teste",
-    "description": "teste",
-    "boardId": 1,
+    "title": "Tarefa1",
+    "description": "Tarefa1 - Teste",
+    "boardId": 8,
     "situacao": 1
 }
 
@@ -54,16 +54,16 @@ DELETE {{baseUrl}}/api/cards/2
 
 
 ### Deletar Board e seus cards
-DELETE {{baseUrl}}/api/boards/7
+DELETE {{baseUrl}}/api/boards/8
     Content-Type: application/json
 
 
 ### Editar Board
-PUT {{baseUrl}}/api/boards/1 
+PUT {{baseUrl}}/api/boards/8
     Content-Type: application/json
 
 {
-    "name": "teste123124",
+    "name": "Board1",
     "isPublic": true
 }
 
@@ -78,7 +78,7 @@ PUT {{baseUrl}}/api/cards/2
 }
 
 ### Consultar card/tarefa
-GET {{baseUrl}}/api/boards/cards/1
+GET {{baseUrl}}/api/boards/cards/8
 
 ### Visualizar boards publicos
 GET {{baseUrl}}/api/boards/publicos

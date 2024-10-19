@@ -1,13 +1,15 @@
+using System.Net.Http.Headers;
 using GerenciadorTarefas.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>();
 var app = builder.Build();
 
-app.MapGet("/", () => Results.Redirect("/index.html"));
+app.MapGet("/", () => "Trabalho de Software Visual A2-1");
 
 app.MapPost("/cadastrar", ([FromBody] Usuario user, 
     [FromServices] AppDbContext context) => {
@@ -44,7 +46,7 @@ app.MapGet("/api/boards/{user_id}", (int user_id, [FromServices] AppDbContext co
 
         var boards = context.Boards.Include(board => board.Cards)
         .Where(b => b.UsuarioId == user_id)
-        .Select(b => new {b.Name, b.Cards})
+        .Select(b => new {b.Id, b.Name, b.Cards})
         .ToList();
 
         if (boards.Count == 0) {
@@ -143,7 +145,12 @@ app.MapPut("/api/cards/{id}", async (int id, [FromBody] Card updatedCard, [FromS
 
 app.MapGet("/api/boards/cards/{id}",(int id, [FromServices] AppDbContext context) =>
 {
-    var cards =context.Cards.Where(c => c.BoardId == id).ToList();
+    var cards = context.Cards.Where(c => c.BoardId == id).ToList();
+
+    if (cards.Count == 0) {
+        return Results.NotFound();
+    }
+
     return Results.Ok(cards);
 }
 );

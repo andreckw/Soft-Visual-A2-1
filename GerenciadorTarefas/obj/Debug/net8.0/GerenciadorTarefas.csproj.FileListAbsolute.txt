@@ -394,3 +394,8 @@ C:\Users\andre\OneDrive\Documentos\GitHub\Soft-Visual-A2-1\GerenciadorTarefas\ob
 C:\Users\andre\OneDrive\Documentos\GitHub\Soft-Visual-A2-1\GerenciadorTarefas\obj\Debug\net8.0\Gerencia.DBB30EB1.Up2Date
 C:\Users\andre\OneDrive\Documentos\GitHub\Soft-Visual-A2-1\GerenciadorTarefas\obj\Debug\net8.0\GerenciadorTarefas.genruntimeconfig.cache
 C:\Users\andre\OneDrive\Documentos\GitHub\Soft-Visual-A2-1\GerenciadorTarefas\obj\Debug\net8.0\ref\GerenciadorTarefas.dll
+C:\Users\User\Documents\Faculdad\Projeto\Soft-Visual-A2-1\GerenciadorTarefas\bin\Debug\net8.0\GerenciadorTarefas.staticwebassets.runtime.json
+C:\Users\User\Documents\Faculdad\Projeto\Soft-Visual-A2-1\GerenciadorTarefas\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\User\Documents\Faculdad\Projeto\Soft-Visual-A2-1\GerenciadorTarefas\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\User\Documents\Faculdad\Projeto\Soft-Visual-A2-1\GerenciadorTarefas\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\User\Documents\Faculdad\Projeto\Soft-Visual-A2-1\GerenciadorTarefas\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

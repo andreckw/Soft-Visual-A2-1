@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\GerenciadorTarefas.csproj": {}
+    "C:\\Users\\User\\Documents\\Faculdad\\Projeto\\Soft-Visual-A2-1\\GerenciadorTarefas\\GerenciadorTarefas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\GerenciadorTarefas.csproj": {
+    "C:\\Users\\User\\Documents\\Faculdad\\Projeto\\Soft-Visual-A2-1\\GerenciadorTarefas\\GerenciadorTarefas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\GerenciadorTarefas.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\Faculdad\\Projeto\\Soft-Visual-A2-1\\GerenciadorTarefas\\GerenciadorTarefas.csproj",
         "projectName": "GerenciadorTarefas",
-        "projectPath": "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\GerenciadorTarefas.csproj",
-        "packagesPath": "C:\\Users\\toshi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\obj\\",
+        "projectPath": "C:\\Users\\User\\Documents\\Faculdad\\Projeto\\Soft-Visual-A2-1\\GerenciadorTarefas\\GerenciadorTarefas.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\Faculdad\\Projeto\\Soft-Visual-A2-1\\GerenciadorTarefas\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\toshi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
