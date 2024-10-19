@@ -2651,19 +2651,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\andre\\.nuget\\packages\\": {}
+    "C:\\Users\\toshi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\andre\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\GerenciadorTarefas.csproj",
+      "projectUniqueName": "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\GerenciadorTarefas.csproj",
       "projectName": "GerenciadorTarefas",
-      "projectPath": "C:\\Users\\andre\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\GerenciadorTarefas.csproj",
-      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\andre\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\obj\\",
+      "projectPath": "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\GerenciadorTarefas.csproj",
+      "packagesPath": "C:\\Users\\toshi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\toshi\\OneDrive\\Área de Trabalho\\Soft-Visual-A2-1-main\\GerenciadorTarefas\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\toshi\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

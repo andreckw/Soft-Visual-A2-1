@@ -7,4 +7,5 @@ public class Card
     public string? Description { get; set; }
     public int BoardId { get; set; }
     public Board Board { get; set; } = null!;
+    public Situacao Situacao { get; set; } = Situacao.Pendente;
 }

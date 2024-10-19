@@ -12,7 +12,7 @@ POST {{baseUrl}}/cadastrar
 {
     "nome": "teste",
     "senha": "teste",
-    "email": "teste@gmail.com"
+    "email": "teste123414@gmail.com"
 }
 
 ### Logar usuario
@@ -20,7 +20,7 @@ POST {{baseUrl}}/login
     Content-Type: application/json
 
 {
-    "email": "teste@gmail.com",
+    "email": "teste123414@gmail.com",
     "senha": "teste"
 }
 
@@ -30,8 +30,52 @@ POST {{baseUrl}}/api/boards
 
 {
   "name": "teste3",
-  "usuarioId": 1
+  "usuarioId": 1,
+  "isPublic": false
 }
 
 ### Listar Boards (precisa do id do usuario)
 GET {{baseUrl}}/api/boards/1
+
+### Criar Card/tarefa
+POST {{baseUrl}}/api/cards
+    Content-Type: application/json
+
+{
+    "title": "teste",
+    "description": "teste",
+    "boardId": 1,
+    "situacao": 1
+}
+
+### Deletar uma tarefa/card
+DELETE {{baseUrl}}/api/cards/2
+    Content-Type: application/json
+
+
+### Deletar Board e seus cards
+DELETE {{baseUrl}}/api/boards/1
+    Content-Type: application/json
+
+
+### Editar Board
+PUT {{baseUrl}}/api/boards/1 
+    Content-Type: application/json
+
+{
+    "name": "teste123124",
+    "isPublic": true
+}
+
+### Editar Card/Tarefa
+PUT {{baseUrl}}/api/cards/2 
+    Content-Type: application/json
+
+{
+    "title": "teste123",
+    "description": "teste123",
+    "situacao": 2
+}
+
+### Consultar card/tarefa
+GET {{baseUrl}}/api/boards/cards/1
