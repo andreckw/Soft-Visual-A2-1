@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddCors(options => options.AddPolicy("AcessoTotal", configs => 
+        configs.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 var app = builder.Build();
 
 app.MapGet("/", () => "Trabalho de Software Visual A2-1");
@@ -175,4 +177,5 @@ app.MapGet("/api/boards/publicos",([FromServices]AppDbContext context)=>
 }
 );
 
+app.UseCors("AcessoTotal");
 app.Run();

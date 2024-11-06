@@ -1,3 +1,4 @@
-GerenciadorTarefas/bin/*
-GerenciadorTarefas/gerenciadortarefas.db-shm
-GerenciadorTarefas/gerenciadortarefas.db-wal
+/GerenciadorTarefas/bin
+/GerenciadorTarefas/obj
+/GerenciadorTarefas/gerenciadortarefas.db-shm
+/GerenciadorTarefas/gerenciadortarefas.db-wal
