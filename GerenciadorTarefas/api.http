@@ -34,6 +34,11 @@ POST {{baseUrl}}/api/boards
   "isPublic": false
 }
 
+### Consulta Boards (precisa do id do board)
+GET {{baseUrl}}/api/boards/consultar/5
+    Content-Type: application/json
+
+
 ### Listar Boards (precisa do id do usuario)
 GET {{baseUrl}}/api/boards/1
 
@@ -44,7 +49,7 @@ POST {{baseUrl}}/api/cards
 {
     "title": "Tarefa1",
     "description": "Tarefa1 - Teste",
-    "boardId": 8,
+    "boardId": 5,
     "situacao": 1
 }
 
@@ -78,7 +83,7 @@ PUT {{baseUrl}}/api/cards/2
 }
 
 ### Consultar card/tarefa
-GET {{baseUrl}}/api/boards/cards/8
+GET {{baseUrl}}/api/boards/cards/9
 
 ### Visualizar boards publicos
 GET {{baseUrl}}/api/boards/publicos

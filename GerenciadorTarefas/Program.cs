@@ -67,6 +67,26 @@ app.MapPost("/api/boards", ([FromBody] Board board,
         return Results.Created("", board);
 });
 
+app.MapGet("/api/boards/consultar/{id}", (int id, [FromServices] AppDbContext context) =>
+{
+    var board = context.Boards
+        .Include(b => b.Cards)
+        .Select(b => new {
+            b.Id,
+            b.Name,
+            b.IsPublic,
+            Cards = b.Cards.Select(c => new { c.Id, c.Title, c.Description, c.Situacao})
+        })
+        .FirstOrDefault(b => b.Id == id);
+    
+    if (board == null)
+    {
+        return Results.NotFound("Tarefa nao encontrada");
+    }
+
+    return Results.Ok(board);
+});
+
 app.MapPost("/api/cards", async ([FromBody] Card card, [FromServices] AppDbContext context) =>
 {
     var boardExist = await context.Boards.FindAsync(card.BoardId);
@@ -94,6 +114,7 @@ app.MapDelete("/api/cards/{id}", async (int id, [FromServices] AppDbContext cont
     await context.SaveChangesAsync();
     return Results.Ok("Tarefa deletada com sucesso");
 });
+
 
 app.MapDelete("/api/boards/{id}", async (int id, [FromServices] AppDbContext context) =>
 {
