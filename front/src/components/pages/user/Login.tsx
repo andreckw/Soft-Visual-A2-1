@@ -1,46 +1,45 @@
 import { useState } from "react";
+import { User } from "../../../models/User";
 
 function Login() {
 
     const [email, setEmail] = useState(String);
     const [senha, setSenha] = useState(String);
 
-    function digitarEmail(e: any) {
-        setEmail(e.target.value);
-    }
+    function enviar(e: any) {
+        e.preventDefault();
 
-    function digitarSenha(e: any) {
-        setSenha(e.target.value);
-    }
+        var usuario: User = {
+            email: email,
+            senha: senha
+        };
 
-    function clicar() {
         fetch("http://localhost:5088/login", {
             method: "POST",
-            body: JSON.stringify({
-                email: email,
-                senha: senha,
-            }),
             headers: {
                 "Content-Type": "application/json"
-            }
+            },
+            body: JSON.stringify(usuario)
         }).then(resp => {
-            console.log(resp);
+            return resp.json();
+        }).then(userResp => {
         })
     }
 
     return (
         <div>
-            <label htmlFor="email">Email:</label>
-            <input type="text" id="email" onChange={digitarEmail}/>
+            <form action="" onSubmit={enviar}>
+                <label htmlFor="email">Email:</label>
+                <input type="text" id="email" onChange={(e: any) => setEmail(e.target.value)}/>
 
-            <br /><br />
-            <label htmlFor="password">Senha:</label>
-            <input type="text" id="password" onChange={digitarSenha}/>
+                <label htmlFor="password" >Senha:</label>
+                <input type="password" id="password" onChange={(e: any) => setSenha(e.target.value)}/>
 
-            <br /><br />
-            <button onClick={clicar}>
-                Logar
-            </button>
+                <button type="submit">
+                    Enviar
+                </button>
+            </form>
+
         </div>
     );
 

@@ -1,41 +1,28 @@
 import { useState } from "react";
 import Login from "./components/pages/user/Login";
 import AreasDeTrabalhoPublico from "./components/pages/boards/AreasDeTrabalhoPublico";
-import Tarefas from "./components/pages/cards/Tarefas";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { User } from "./models/User";
+
 
 function App() {
-    const [component, setComponent] = useState(<Login />);
-
-    function click(e: any) {
-        if (e.target.id == 0) {
-            setComponent(<Login />);
-
-        } else if (e.target.id == 1) { // Colocar para cadastrar
-            setComponent(<Login />);
-
-        } else if (e.target.id == 2) { 
-            setComponent(<AreasDeTrabalhoPublico />);
-
-        } else if (e.target.id == 3) { // Colocar para criar Areas de trabalho
-            setComponent(<Tarefas />)
-
-        }
-
-    }
 
     return (
-        <div>
+        <BrowserRouter>
             <nav>
                 <ul>
-                    <li> <button onClick={click} id="0"> Login </button> </li>
-                    <li> <button onClick={click} id="1"> Cadastrar </button> </li>
-                    <li> <button onClick={click} id="2"> Areas de trabalho </button> </li>
-                    <li> <button onClick={click} id="3"> Criar Area de trabalho </button> </li>
+                    <li> <Link to="/"> Login </Link> </li>
+                    <li> <Link to="/"> Cadastrar </Link> </li>
+                    <li> <Link to="/"> Areas de trabalho </Link> </li>
+                    <li> <Link to="/page/boards/publicos"> Criar Area de trabalho </Link> </li>
                 </ul>
             </nav>
-            <br />
-            {component}
-        </div>
+
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/page/boards/publicos" element={<AreasDeTrabalhoPublico />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 
