@@ -1,4 +1,5 @@
 /GerenciadorTarefas/bin
-/GerenciadorTarefas/obj
 /GerenciadorTarefas/gerenciadortarefas.db-shm
 /GerenciadorTarefas/gerenciadortarefas.db-wal
+/GerenciadorTarefas/obj
+/node_modules

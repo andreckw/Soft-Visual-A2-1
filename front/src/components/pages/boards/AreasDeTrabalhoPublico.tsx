@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Board } from "../../../models/Board";
+import { Link } from "react-router-dom";
 
 function AreasDeTrabalhoPublico() {
     const [boards, setBoards] = useState<Board[]>([])
@@ -18,8 +19,8 @@ function AreasDeTrabalhoPublico() {
     })
 
     return (
-        <div>
-            <table>
+        <div className="section content">
+            <table className="table-container table is-fullwidth is-hoverable">
                 <thead>
                     <tr>
                         <th> Nome </th>
@@ -32,7 +33,9 @@ function AreasDeTrabalhoPublico() {
                         <tr id="{board.id}">
                             <td> {board.name} </td>
                             <td>
-                                <button> Ir para </button>
+                                <div className="buttons is-right">
+                                    <Link to={`/page/board/${board.id}`} className="button is-link"> Visualizar </Link>
+                                </div>
                             </td>
                         </tr>
                     ))}

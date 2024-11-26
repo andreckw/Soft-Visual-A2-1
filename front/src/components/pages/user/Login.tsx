@@ -27,15 +27,23 @@ function Login() {
     }
 
     return (
-        <div>
+        <div className="section content">
             <form action="" onSubmit={enviar}>
-                <label htmlFor="email">Email:</label>
-                <input type="text" id="email" onChange={(e: any) => setEmail(e.target.value)}/>
+                <div className="field">
+                    <label htmlFor="email" className="label">Email</label>
+                    <div className="control">
+                        <input type="text" className="input" id="email" onChange={(e: any) => setEmail(e.target.value)}/>
+                    </div>
+                </div>
 
-                <label htmlFor="password" >Senha:</label>
-                <input type="password" id="password" onChange={(e: any) => setSenha(e.target.value)}/>
+                <div className="field">
+                    <label htmlFor="email" className="label">Senha</label>
+                    <div className="control">
+                        <input type="password" className="input" id="password" onChange={(e: any) => setSenha(e.target.value)}/>
+                    </div>
+                </div>                
 
-                <button type="submit">
+                <button type="submit" className="button is-link">
                     Enviar
                 </button>
             </form>
