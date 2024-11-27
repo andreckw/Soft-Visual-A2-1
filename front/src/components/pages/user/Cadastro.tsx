@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { User } from "../../../models/User";
+import { useNavigate } from "react-router-dom";
 
 
 function Cadastro() {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+    const navigate = useNavigate();
 
     function enviar(e: any) {
         e.preventDefault();
@@ -25,8 +27,8 @@ function Cadastro() {
         }).then(resp => {
             console.log(resp);
             return resp.json();
-        }).then(userResp => {
-            
+        }).then(() => {
+            navigate("/");
         })
     }
 

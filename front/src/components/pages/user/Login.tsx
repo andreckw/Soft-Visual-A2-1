@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { User } from "../../../models/User";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../App";
+
 
 function Login() {
-
+    let { setUserLogado } = useContext(UserContext);
     const [email, setEmail] = useState(String);
     const [senha, setSenha] = useState(String);
+    let navigate = useNavigate();
 
     function enviar(e: any) {
         e.preventDefault();
@@ -23,7 +27,9 @@ function Login() {
         }).then(resp => {
             return resp.json();
         }).then(userResp => {
-        })
+            setUserLogado(userResp);
+            navigate("page/boards/publicos");
+        });
     }
 
     return (
@@ -46,6 +52,7 @@ function Login() {
                 <button type="submit" className="button is-link">
                     Enviar
                 </button>
+                
             </form>
 
         </div>

@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Board } from "../../../models/Board";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../../App";
 
 function AreasDeTrabalhoPublico() {
+    let { userLogado } = useContext(UserContext);
     const [boards, setBoards] = useState<Board[]>([])
 
     useEffect(() => {
+        console.log(userLogado);
         fetch("http://localhost:5088/api/boards/publicos", {
             method: "GET",
             headers: {
@@ -15,7 +18,8 @@ function AreasDeTrabalhoPublico() {
             return resp.json();
         }).then(boards => {
             setBoards(boards);
-        })
+        });
+
     })
 
     return (
