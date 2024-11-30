@@ -189,11 +189,6 @@ app.MapGet("/api/boards/publicos",([FromServices]AppDbContext context)=>
         Cards = b.Cards.Select(c => new { c.Id, c.Title, c.Description, c.Situacao})
     }).ToList();
 
-    if(boardsPublicos.Count() == 0)
-    {
-        return Results.NotFound("");
-    }
-
     return Results.Ok(boardsPublicos);
 }
 );

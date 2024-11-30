@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "y8fBFzKh1xsuxVKmzUj7ib62oUAqpNbfKLIQzqhBBHs=",
+  "Hash": "d8YH84Xw30OHvGmOP86kZE2oVHDs2OA93MX+hXjrax0=",
   "Source": "GerenciadorTarefas",
   "BasePath": "_content/GerenciadorTarefas",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "GerenciadorTarefas\\wwwroot",
       "Source": "GerenciadorTarefas",
-      "ContentRoot": "C:\\Users\\andre\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\toshi\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\wwwroot\\",
       "BasePath": "_content/GerenciadorTarefas",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\andre\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\wwwroot\\index.html",
+      "Identity": "C:\\Users\\toshi\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\wwwroot\\index.html",
       "SourceId": "GerenciadorTarefas",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\andre\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\toshi\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\wwwroot\\",
       "BasePath": "_content/GerenciadorTarefas",
       "RelativePath": "index.html",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Users\\andre\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\wwwroot\\Script.js",
+      "Identity": "C:\\Users\\toshi\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\wwwroot\\Script.js",
       "SourceId": "GerenciadorTarefas",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\andre\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\toshi\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\wwwroot\\",
       "BasePath": "_content/GerenciadorTarefas",
       "RelativePath": "Script.js",
       "AssetKind": "All",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\Script.js"
     },
     {
-      "Identity": "C:\\Users\\andre\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\wwwroot\\styles.css",
+      "Identity": "C:\\Users\\toshi\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\wwwroot\\styles.css",
       "SourceId": "GerenciadorTarefas",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\andre\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\toshi\\OneDrive\\Documentos\\GitHub\\Soft-Visual-A2-1\\GerenciadorTarefas\\wwwroot\\",
       "BasePath": "_content/GerenciadorTarefas",
       "RelativePath": "styles.css",
       "AssetKind": "All",

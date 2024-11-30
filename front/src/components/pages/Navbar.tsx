@@ -45,6 +45,14 @@ function Navbar() {
                         :
                         <div></div>
                     }
+
+                    {userLogado?.id && (
+                        <div className="navbar-item">
+                            <Link to="/page/board/criar" className="button is-link">
+                                Criar Área de Trabalho
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </div>
         </nav>

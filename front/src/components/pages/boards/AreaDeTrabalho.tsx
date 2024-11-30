@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { Board } from "../../../models/Board";
 import { Tarefa } from "../../../models/Tarefa";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function AreaDeTrabalho() {
     const {id} = useParams();
@@ -13,7 +14,7 @@ function AreaDeTrabalho() {
     });
 
     useEffect(() => {
-        fetch(`http://localhost:5088/api/boards/consultar/${id}`, {
+        fetch("http://localhost:5088/api/boards/consultar/${id}", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -25,9 +26,33 @@ function AreaDeTrabalho() {
         })
     });
 
+    const handleDelete = (cardId: number) => {
+        fetch(`http://localhost:5088/api/tarefas/${cardId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then((response) => {
+            if (response.ok) {
+                setBoard((prevBoard) => ({
+                    ...prevBoard,
+                    cards: prevBoard.cards.filter(card => card.id !== cardId)
+                }));
+            } else {
+                alert("Erro ao excluir a tarefa.");
+            }
+        });
+    };
+
     return (
         <div className="section content">
             <h1 className="title is-1">{board.name}</h1>
+
+            <div className="buttons">
+                    <button className="button is-primary">Criar Tarefa</button>
+            </div>
+
             <table className="table-container table is-fullwidth is-hoverable">
                 <thead>
                     <tr>
@@ -48,6 +73,25 @@ function AreaDeTrabalho() {
                                     card.situacao == 2 ?
                                     "Em andamento" :
                                     "Concluido"} </td>
+                            <td>
+                                <Link to={`/page/board/${id}/tarefa/${card.id}/editar`}>
+                                    <button className="button is-warning">
+                                        Editar
+                                    </button>
+                                </Link>
+
+                                <Link to={`/page/board/${board.id}/editar`} className="button is-warning">
+                                    <button className="button is-warning">
+                                        Editar Área de Trabalho
+                                    </button>
+                                </Link>
+
+                                <button
+                                    className="button is-danger"
+                                    onClick={() => handleDelete(card.id!)}>
+                                    Excluir
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

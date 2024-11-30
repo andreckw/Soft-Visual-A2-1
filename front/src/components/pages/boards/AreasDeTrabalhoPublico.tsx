@@ -17,6 +17,7 @@ function AreasDeTrabalhoPublico() {
         }).then(resp => {
             return resp.json();
         }).then(boards => {
+            console.log(boards);
             setBoards(boards);
         });
 
