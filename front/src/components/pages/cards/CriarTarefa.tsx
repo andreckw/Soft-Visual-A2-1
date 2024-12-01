@@ -1,20 +1,29 @@
-import { useState } from "react";
+import { UserContext } from "../../../App";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-function CriarTarefa(){
-    const {id} = useParams();
+function CriarTarefa() {
+    const { id } = useParams();
+    const { userLogado } = useContext(UserContext);
+    const navigate = useNavigate();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [situacao, setSituacao] = useState(1);
+
+    useEffect(() => {
+        if (userLogado.id == null) {
+            navigate("/");
+        }
+    })
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
         const novaTarefa = {
-            title:title,
-            description:description,
-            situacao:situacao,
-            boardId:id,
+            title: title,
+            description: description,
+            situacao: situacao,
+            boardId: id,
         };
 
         fetch(`http://localhost:5088/api/cards`, {
@@ -24,18 +33,18 @@ function CriarTarefa(){
             },
             body: JSON.stringify(novaTarefa),
         })
-        .then((response) => {
-            if (response.ok) {
-                return true;
-            }
-        })
-        .then((tarefa) => {
-            console.log("Tarefa criada:", tarefa);
-            alert("Tarefa criada com sucesso!");
-            setTitle("");
-            setDescription("");
-            setSituacao(1);
-        });
+            .then((response) => {
+                if (response.ok) {
+                    return true;
+                }
+            })
+            .then((tarefa) => {
+                console.log("Tarefa criada:", tarefa);
+                alert("Tarefa criada com sucesso!");
+                setTitle("");
+                setDescription("");
+                setSituacao(1);
+            });
     };
 
     return (

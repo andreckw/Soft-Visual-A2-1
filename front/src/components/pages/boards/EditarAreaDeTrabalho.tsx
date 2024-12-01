@@ -1,40 +1,55 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Board } from "../../../models/Board";
+import { UserContext } from "../../../App";
 
-function EditarAreaDeTrabalho(){
-    const {boardId} = useParams();
+function EditarAreaDeTrabalho() {
+    const { userLogado } = useContext(UserContext);
+    const { boardId } = useParams();
     const navigate = useNavigate();
-    const [board,setBoard] = useState<Board>({
-        id: 0,
-        name: "",
-        isPublic: false,
-        cards: [],
-    });
+    const [nameBoard, setNameBoard] = useState("");
+    const [isPublicBoard, setIsPublicBoard] = useState(false);
 
     useEffect(() => {
+        if (userLogado.id == null) {
+            navigate("/");
+        }
+
         fetch(`http://localhost:5088/api/boards/consultar/${boardId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             },
         })
-            .then((resp) => resp.json())
-            .then((boardResp) => setBoard(boardResp));
-    }, [boardId]);
+            .then((resp) => {
+                return resp.json()
+            })
+            .then((boardResp: Board) => {
+                setNameBoard(boardResp.name);
+            });
+    });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
+        const newBoard = {
+            id: boardId,
+            name: nameBoard,
+            isPublic: isPublicBoard,
+            userId: userLogado.id,
+        }
+
+        console.log(newBoard);
 
         fetch(`http://localhost:5088/api/boards/${boardId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(board),
+            body: JSON.stringify(newBoard),
         }).then((response) => {
             if (response.ok) {
-                navigate(`/page/board/${board.id}`);
+                navigate(`/page/board/${boardId}`);
             }
         });
     };
@@ -50,8 +65,8 @@ function EditarAreaDeTrabalho(){
                             type="text"
                             id="name"
                             className="input"
-                            value={board.name}
-                            onChange={(e) => setBoard({ ...board, name: e.target.value })}
+                            value={nameBoard}
+                            onChange={(e) => { setNameBoard(e.target.value) }}
                             required
                         />
                     </div>
@@ -61,8 +76,7 @@ function EditarAreaDeTrabalho(){
                     <label className="checkbox">
                         <input
                             type="checkbox"
-                            checked={board.isPublic}
-                            onChange={(e) => setBoard({ ...board, isPublic: e.target.checked })}
+                            onChange={(e) => { setIsPublicBoard(e.target.checked) }}
                         />
                         Público
                     </label>

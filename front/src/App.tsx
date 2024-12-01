@@ -8,19 +8,19 @@ import AreaDeTrabalho from "./components/pages/boards/AreaDeTrabalho";
 import "bulma/css/bulma.min.css";
 import Logout from "./components/pages/user/Logout";
 import CriarAreaDeTrabalho from "./components/pages/boards/CriarAreaDeTrabalho";
-import CriarTarefa from "./components/pages/boards/CriarTarefa";
-import EditarTarefa from "./components/pages/boards/EditarTarefa";
+import CriarTarefa from "./components/pages/cards/CriarTarefa";
+import EditarTarefa from "./components/pages/cards/EditarTarefa";
 import EditarAreaDeTrabalho from "./components/pages/boards/EditarAreaDeTrabalho";
 import ListaAreaDeTrabalho from "./components/pages/boards/ListaAreaDeTrabalhos";
 
-export const UserContext = createContext({setUserLogado: (event: any) => {}, userLogado: {id: null}});
+export const UserContext = createContext({ setUserLogado: (event: any) => { }, userLogado: { id: null } });
 
 function App() {
-    const [userLogado, setUserLogado] = useState({id: null});
+    const [userLogado, setUserLogado] = useState({ id: null });
 
     return (
         <div className="block">
-            <UserContext.Provider value={{setUserLogado, userLogado}}>
+            <UserContext.Provider value={{ setUserLogado, userLogado }}>
                 <BrowserRouter>
                     <Navbar />
 

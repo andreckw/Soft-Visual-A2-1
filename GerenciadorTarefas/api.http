@@ -53,6 +53,11 @@ POST {{baseUrl}}/api/cards
     "situacao": 1
 }
 
+### Pegar infos da tarefa
+GET {{baseUrl}}/api/cards/13
+    Content-Type: application/json
+
+
 ### Deletar uma tarefa/card
 DELETE {{baseUrl}}/api/cards/2
     Content-Type: application/json

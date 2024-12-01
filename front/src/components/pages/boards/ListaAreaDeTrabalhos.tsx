@@ -10,14 +10,22 @@ function ListaAreaDeTrabalho(){
     const {userLogado, setUserLogado} = useContext(UserContext);
 
     useEffect(() => {
+        if (userLogado.id == null) {
+            navigate("/");
+        }
+
         fetch(`http://localhost:5088/api/boards/${userLogado.id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             },
         })
-            .then((response) => response.json())
-            .then((data) => setBoards(data));
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                setBoards(data)
+            });
     }, []);
 
     const handleClick = (boardId: number) => {
@@ -41,6 +49,7 @@ function ListaAreaDeTrabalho(){
                         <th>#</th>
                         <th>Nome</th>
                         <th>Público</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

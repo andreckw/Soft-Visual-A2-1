@@ -7,78 +7,83 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>();
-builder.Services.AddCors(options => options.AddPolicy("AcessoTotal", configs => 
+builder.Services.AddCors(options => options.AddPolicy("AcessoTotal", configs =>
         configs.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 var app = builder.Build();
 
 app.MapGet("/", () => "Trabalho de Software Visual A2-1");
 
-app.MapPost("/cadastrar", ([FromBody] Usuario user, 
-    [FromServices] AppDbContext context) => {
+app.MapPost("/cadastrar", ([FromBody] Usuario user,
+    [FromServices] AppDbContext context) =>
+{
 
-        var userExist = context.Usuarios.FirstOrDefault(u => u.Email == user.Email);
+    var userExist = context.Usuarios.FirstOrDefault(u => u.Email == user.Email);
 
-        if (userExist != null) {
-            return Results.BadRequest("Email digitado já existente nos registros");
-        }
+    if (userExist != null)
+    {
+        return Results.BadRequest("Email digitado já existente nos registros");
+    }
 
-        PasswordHasher<Usuario> pass = new PasswordHasher<Usuario>();
-        user.Senha = pass.HashPassword(user, user.Senha);
+    PasswordHasher<Usuario> pass = new PasswordHasher<Usuario>();
+    user.Senha = pass.HashPassword(user, user.Senha);
 
-        context.Usuarios.Add(user);
-        context.SaveChanges();
-        return Results.Created("", user);
+    context.Usuarios.Add(user);
+    context.SaveChanges();
+    return Results.Created("", user);
 });
 
-app.MapPost("/login", ([FromBody] Usuario user, 
-    [FromServices] AppDbContext context) => {
-        PasswordHasher<Usuario> pass = new PasswordHasher<Usuario>();
-        var userLogin = context.Usuarios.FirstOrDefault(u => u.Email == user.Email);
+app.MapPost("/login", ([FromBody] Usuario user,
+    [FromServices] AppDbContext context) =>
+{
+    PasswordHasher<Usuario> pass = new PasswordHasher<Usuario>();
+    var userLogin = context.Usuarios.FirstOrDefault(u => u.Email == user.Email);
 
-        if (userLogin == null) {
-            return Results.Unauthorized();
-        } else if (pass.VerifyHashedPassword(user, userLogin.Senha, user.Senha) == 0) {
-            return Results.Unauthorized();
-        }
+    if (userLogin == null)
+    {
+        return Results.Unauthorized();
+    }
+    else if (pass.VerifyHashedPassword(user, userLogin.Senha, user.Senha) == 0)
+    {
+        return Results.Unauthorized();
+    }
 
-        return Results.Ok(userLogin);
+    return Results.Ok(userLogin);
 });
 
-app.MapGet("/api/boards/{user_id}", (int user_id, [FromServices] AppDbContext context) => {
+app.MapGet("/api/boards/{user_id}", (int user_id, [FromServices] AppDbContext context) =>
+{
 
-        var boards = context.Boards.Include(board => board.Cards)
-        .Where(b => b.UsuarioId == user_id)
-        .Select(b => new {b.Id, b.Name, b.Cards})
-        .ToList();
+    var boards = context.Boards.Include(board => board.Cards)
+    .Where(b => b.UsuarioId == user_id)
+    .Select(b => new { b.Id, b.Name, b.IsPublic, b.Cards })
+    .ToList();
 
-        if (boards.Count == 0) {
-            return Results.NotFound();
-        }
-
-        return Results.Ok(boards);
+    return Results.Ok(boards);
 
 });
 
 app.MapPost("/api/boards", ([FromBody] Board board,
-    [FromServices] AppDbContext context) => {
-        context.Boards.Add(board);
-        context.SaveChanges();
+    [FromServices] AppDbContext context) =>
+{
+    context.Boards.Add(board);
+    context.SaveChanges();
 
-        return Results.Created("", board);
+    return Results.Created("", board);
 });
 
 app.MapGet("/api/boards/consultar/{id}", (int id, [FromServices] AppDbContext context) =>
 {
     var board = context.Boards
         .Include(b => b.Cards)
-        .Select(b => new {
+        .Select(b => new
+        {
             b.Id,
             b.Name,
             b.IsPublic,
-            Cards = b.Cards.Select(c => new { c.Id, c.Title, c.Description, c.Situacao})
+            Cards = b.Cards.Select(c => new { c.Id, c.Title, c.Description, c.Situacao })
         })
         .FirstOrDefault(b => b.Id == id);
-    
+
     if (board == null)
     {
         return Results.NotFound("Tarefa nao encontrada");
@@ -100,11 +105,18 @@ app.MapPost("/api/cards", async ([FromBody] Card card, [FromServices] AppDbConte
     return Results.Created();
 });
 
+app.MapGet("/api/cards/{cardId}", async (int cardId, [FromServices] AppDbContext context) =>
+{
+    var card = context.Cards.FirstOrDefault(x => x.Id == cardId);
+
+    return Results.Ok(card);
+});
+
 
 app.MapDelete("/api/cards/{id}", async (int id, [FromServices] AppDbContext context) =>
 {
     var card = await context.Cards.FindAsync(id);
-    
+
     if (card == null)
     {
         return Results.NotFound("Tarefa nao encontrada");
@@ -119,7 +131,7 @@ app.MapDelete("/api/cards/{id}", async (int id, [FromServices] AppDbContext cont
 app.MapDelete("/api/boards/{id}", async (int id, [FromServices] AppDbContext context) =>
 {
     var board = await context.Boards.Include(b => b.Cards).FirstOrDefaultAsync(b => b.Id == id);
-    
+
     if (board == null)
     {
         return Results.NotFound("Board nao encontrado");
@@ -127,7 +139,7 @@ app.MapDelete("/api/boards/{id}", async (int id, [FromServices] AppDbContext con
 
     context.Cards.RemoveRange(board.Cards);
 
-    context.Boards.Remove(board); 
+    context.Boards.Remove(board);
     await context.SaveChangesAsync();
 
     return Results.Ok("Board e seus cards deletados com sucesso");
@@ -166,11 +178,12 @@ app.MapPut("/api/cards/{id}", async (int id, [FromBody] Card updatedCard, [FromS
     return Results.Ok(card);
 });
 
-app.MapGet("/api/boards/cards/{id}",(int id, [FromServices] AppDbContext context) =>
+app.MapGet("/api/boards/cards/{id}", (int id, [FromServices] AppDbContext context) =>
 {
     var cards = context.Cards.Where(c => c.BoardId == id).ToList();
 
-    if (cards.Count == 0) {
+    if (cards.Count == 0)
+    {
         return Results.NotFound();
     }
 
@@ -178,15 +191,16 @@ app.MapGet("/api/boards/cards/{id}",(int id, [FromServices] AppDbContext context
 }
 );
 
-app.MapGet("/api/boards/publicos",([FromServices]AppDbContext context)=>
+app.MapGet("/api/boards/publicos", ([FromServices] AppDbContext context) =>
 {
     var boardsPublicos = context.Boards
     .Where(b => b.IsPublic)
     .Include(b => b.Cards)
-    .Select(b => new {
+    .Select(b => new
+    {
         b.Id,
         b.Name,
-        Cards = b.Cards.Select(c => new { c.Id, c.Title, c.Description, c.Situacao})
+        Cards = b.Cards.Select(c => new { c.Id, c.Title, c.Description, c.Situacao })
     }).ToList();
 
     return Results.Ok(boardsPublicos);
