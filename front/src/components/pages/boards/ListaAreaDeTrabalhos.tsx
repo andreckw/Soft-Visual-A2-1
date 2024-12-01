@@ -1,13 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Board } from "../../../models/Board";
+import { UserContext } from "../../../App";
+import { Link } from "react-router-dom";
 
 function ListaAreaDeTrabalho(){
     const [boards, setBoards] = useState<Board[]>([]);
     const navigate = useNavigate();
+    const {userLogado, setUserLogado} = useContext(UserContext);
 
     useEffect(() => {
-        fetch("http://localhost:5088/api/boards", {
+        fetch(`http://localhost:5088/api/boards/${userLogado.id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -46,6 +49,11 @@ function ListaAreaDeTrabalho(){
                             <td>{board.id}</td>
                             <td>{board.name}</td>
                             <td>{board.isPublic ? "Sim" : "Não"}</td>
+                            <td>
+                                <div className="buttons is-right">
+                                    <Link to={`/page/board/${board.id}`} className="button is-link"> Visualizar </Link>
+                                </div>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

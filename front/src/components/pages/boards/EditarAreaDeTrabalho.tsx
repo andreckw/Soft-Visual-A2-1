@@ -13,7 +13,7 @@ function EditarAreaDeTrabalho(){
     });
 
     useEffect(() => {
-        fetch("http://localhost:5088/api/boards/consultar/${boardId}", {
+        fetch(`http://localhost:5088/api/boards/consultar/${boardId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -26,7 +26,7 @@ function EditarAreaDeTrabalho(){
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        fetch("http://localhost:5088/api/boards/${boardId}", {
+        fetch(`http://localhost:5088/api/boards/${boardId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -34,7 +34,7 @@ function EditarAreaDeTrabalho(){
             body: JSON.stringify(board),
         }).then((response) => {
             if (response.ok) {
-                navigate("/page/board/${board.id}");
+                navigate(`/page/board/${board.id}`);
             }
         });
     };

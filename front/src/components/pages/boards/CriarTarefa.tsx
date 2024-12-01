@@ -11,12 +11,13 @@ function CriarTarefa(){
         e.preventDefault();
 
         const novaTarefa = {
-            title,
-            description,
-            situacao,
+            title:title,
+            description:description,
+            situacao:situacao,
+            boardId:id,
         };
 
-        fetch("http://localhost:5088/api/boards/${id}/tarefas", {
+        fetch(`http://localhost:5088/api/cards`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -25,7 +26,7 @@ function CriarTarefa(){
         })
         .then((response) => {
             if (response.ok) {
-                return response.json();
+                return true;
             }
         })
         .then((tarefa) => {

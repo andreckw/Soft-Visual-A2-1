@@ -14,7 +14,7 @@ function AreaDeTrabalho() {
     });
 
     useEffect(() => {
-        fetch("http://localhost:5088/api/boards/consultar/${id}", {
+        fetch(`http://localhost:5088/api/boards/consultar/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -27,13 +27,14 @@ function AreaDeTrabalho() {
     });
 
     const handleDelete = (cardId: number) => {
-        fetch(`http://localhost:5088/api/tarefas/${cardId}`, {
+        fetch(`http://localhost:5088/api/cards/${cardId}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
             }
         })
         .then((response) => {
+            console.log(response);
             if (response.ok) {
                 setBoard((prevBoard) => ({
                     ...prevBoard,
@@ -50,8 +51,20 @@ function AreaDeTrabalho() {
             <h1 className="title is-1">{board.name}</h1>
 
             <div className="buttons">
-                    <button className="button is-primary">Criar Tarefa</button>
+                    <Link to={`/page/board/${board.id}/tarefa/nova`}>
+                                    <button className="button is-warning">
+                                        Criar Tarefa
+                                    </button>
+                    </Link>
+
+                    <Link to={`/page/board/${board.id}/editar`}>
+                                    <button className="button is-warning">
+                                        Editar Área de Trabalho
+                                    </button>
+                    </Link>
             </div>
+
+            
 
             <table className="table-container table is-fullwidth is-hoverable">
                 <thead>
@@ -80,11 +93,6 @@ function AreaDeTrabalho() {
                                     </button>
                                 </Link>
 
-                                <Link to={`/page/board/${board.id}/editar`} className="button is-warning">
-                                    <button className="button is-warning">
-                                        Editar Área de Trabalho
-                                    </button>
-                                </Link>
 
                                 <button
                                     className="button is-danger"

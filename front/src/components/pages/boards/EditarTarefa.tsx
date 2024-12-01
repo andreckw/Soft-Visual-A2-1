@@ -3,30 +3,20 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Tarefa } from "../../../models/Tarefa";
 
 function EditarTarefa(){
-    const {id} = useParams();
+    const {boardId,tarefaId} = useParams<string>();
     const navigate = useNavigate();
     const [tarefa, setTarefa] = useState<Tarefa>({
-        id: 0,
+        id:parseInt (tarefaId!),
         title: "",
         description: "",
         situacao: 1,
+        boardId:parseInt (boardId!),
     });
-
-    useEffect(() => {
-        fetch("http://localhost:5088/api/tarefas/${id}", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then((resp) => resp.json())
-            .then((tarefaResp) => setTarefa(tarefaResp));
-    }, [id]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        fetch("http://localhost:5088/api/tarefas/${id}", {
+        fetch(`http://localhost:5088/api/cards/${tarefaId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -34,7 +24,7 @@ function EditarTarefa(){
             body: JSON.stringify(tarefa),
         }).then((response) => {
             if (response.ok) {
-                navigate("/page/board/${tarefa.id}");
+                navigate(`/page/board/${boardId}`);
             }
         });
     };

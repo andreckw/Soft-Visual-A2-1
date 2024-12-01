@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../App";
 
 function CriarAreaDeTrabalho(){
     const [name, setName] = useState("");
     const [isPublic, setIsPublic] = useState(false);
     const navigate = useNavigate();
+    const {userLogado, setUserLogado} = useContext(UserContext);
 
     return (
         <div className="section">
@@ -13,7 +15,7 @@ function CriarAreaDeTrabalho(){
                 onSubmit={(e) => {
                     e.preventDefault();
 
-                    const novoBoard = { name, isPublic };
+                    const novoBoard = { name:name, isPublic:isPublic, usuarioId:userLogado.id };
 
                     fetch("http://localhost:5088/api/boards", {
                         method: "POST",
@@ -24,7 +26,7 @@ function CriarAreaDeTrabalho(){
                         .then((board) => {
                             if (board) {
                                 console.log("Area de trabalho criada:", board);
-                                navigate("/page/board/${board.id}");
+                                navigate(`/page/board/${board.id}`);
                             } else {
                                 alert("Area de trabalho nao criada");
                             }

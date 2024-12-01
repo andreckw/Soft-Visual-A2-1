@@ -32,7 +32,7 @@ function Navbar() {
 
                     {(userLogado.id !== null)? 
                         <div className="navbar-item">
-                            <Link to="/" className="button"> Criar Area de trabalho </Link>
+                            <Link to="/page/boards" className="button"> Listar Area de trabalho </Link>
                         </div>
                         :
                         <div></div>
