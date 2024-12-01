@@ -32,7 +32,7 @@ function Navbar() {
 
                     {(userLogado.id !== null)? 
                         <div className="navbar-item">
-                            <Link to="/" className="button"> Criar Area de trabalho </Link>
+                            <Link to="/page/boards" className="button"> Listar Area de trabalho </Link>
                         </div>
                         :
                         <div></div>
@@ -45,6 +45,14 @@ function Navbar() {
                         :
                         <div></div>
                     }
+
+                    {userLogado?.id && (
+                        <div className="navbar-item">
+                            <Link to="/page/board/criar" className="button is-link">
+                                Criar Área de Trabalho
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </div>
         </nav>

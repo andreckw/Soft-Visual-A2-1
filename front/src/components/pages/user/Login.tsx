@@ -28,7 +28,9 @@ function Login() {
             return resp.json();
         }).then(userResp => {
             setUserLogado(userResp);
-            navigate("page/boards/publicos");
+            navigate("page/boards");
+        }).catch(() => {
+            alert("Credenciais não encontradas")
         });
     }
 

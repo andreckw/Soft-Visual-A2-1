@@ -25,7 +25,6 @@ function Cadastro() {
             },
             body: JSON.stringify(user)
         }).then(resp => {
-            console.log(resp);
             return resp.json();
         }).then(() => {
             navigate("/");
