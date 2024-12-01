@@ -5,6 +5,12 @@ import { Tarefa } from "../../../models/Tarefa";
 function EditarTarefa() {
     const { boardId, tarefaId } = useParams<string>();
     const navigate = useNavigate();
+    const [tarefa, setTarefa] = useState<Tarefa>({
+        title: "",
+        description: "",
+        situacao: 1,
+        boardId: parseInt(boardId!),
+    });
     const [situacaoTarefa, setSituacaoTarefa] = useState(1);
     const [titleTarefa, setTitleTarefa] = useState("");
     const [descriptionTarefa, setDescriptionTarefa] = useState("");
@@ -15,9 +21,7 @@ function EditarTarefa() {
                 return resp.json();
             })
             .then((tarefaResp: Tarefa) => {
-                setSituacaoTarefa(tarefaResp.situacao);
-                setTitleTarefa(tarefaResp.title);
-                setDescriptionTarefa(tarefaResp.description);
+                setTarefa(tarefaResp);
             });
     });
 
@@ -31,6 +35,7 @@ function EditarTarefa() {
             situacao: situacaoTarefa,
             boardId: parseInt(boardId!), 
         }
+        console.log(newTarefa);
 
         fetch(`http://localhost:5088/api/cards/${tarefaId}`, {
             method: "PUT",
@@ -56,7 +61,7 @@ function EditarTarefa() {
                             type="text"
                             id="title"
                             className="input"
-                            placeholder={titleTarefa}
+                            placeholder={tarefa.title}
                             onChange={(e) => {setTitleTarefa(e.target.value)}}
                             required />
                     </div>
@@ -68,7 +73,7 @@ function EditarTarefa() {
                         <textarea
                             id="description"
                             className="textarea"
-                            placeholder={descriptionTarefa}
+                            placeholder={tarefa.description}
                             onChange={(e) => { setDescriptionTarefa(e.target.value) }} />
                     </div>
                 </div>
